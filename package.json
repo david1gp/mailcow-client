@@ -1,0 +1,77 @@
+{
+  "name": "@adaptive-ds/mailcow-client",
+  "version": "0.1.0",
+  "description": "TypeScript client and CLI for the mailcow API. Full API coverage, Result-typed, Valibot-validated.",
+  "keywords": [
+    "mailcow",
+    "mail",
+    "api-client",
+    "typescript",
+    "cli",
+    "valibot",
+    "result"
+  ],
+  "homepage": "https://github.com/david1gp/mailcow-client",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david1gp/mailcow-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/david1gp/mailcow-client/issues"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "mailcow-client": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "bun run src/cli.ts",
+    "test": "bun test",
+    "test:w": "bun test --watch",
+    "test:e2e": "bun run build && bun --env-file=.env test ./e2e/*.e2e.ts",
+    "build": "rm -rf ./dist && bun tsc -p ./tsconfig.lib.json && chmod +x ./dist/cli.js",
+    "release": "bash ./ops/release.sh",
+    "update": "bun update",
+    "format": "biome format --write src test package.json tsconfig.json tsconfig.lib.json biome.json",
+    "clean": "rm -rf ./dist",
+    "reset": "rm -rf ./node_modules"
+  },
+  "dependencies": {
+    "@stricli/core": "^1.3.0"
+  },
+  "peerDependencies": {
+    "@adaptive-ds/result": "^0.6.0",
+    "valibot": "^1.5.0"
+  },
+  "devDependencies": {
+    "@adaptive-ds/result": "^0.6.0",
+    "valibot": "^1.5.0",
+    "@biomejs/biome": "^2.6.2",
+    "@types/bun": "^1.4.4",
+    "typescript": "^6.0.3"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 120,
+    "trailingComma": "all"
+  },
+  "imports": {
+    "#result": "@adaptive-ds/result"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}
