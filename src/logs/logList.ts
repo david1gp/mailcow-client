@@ -19,9 +19,7 @@ export async function logList(options: LogListOptions): PromiseResult<string[]> 
   const requested = await mailcowRequest({
     config,
     method: "GET",
-    path: mailcowPathApi(
-      count === undefined ? `/get/logs/${service}` : `/get/logs/${service}/${count}`,
-    ),
+    path: mailcowPathApi(count === undefined ? `/get/logs/${service}` : `/get/logs/${service}/${count}`),
   })
   if (!requested.success) return requested
   return createResult(mailcowListNormalize<string>(requested.data))
